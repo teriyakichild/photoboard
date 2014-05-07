@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+  {% block main %}
+    {{ pictures }}
+    {% for picture in pictures %} 
+      {{ picture }}
+    {% end %}
+  {% end %}

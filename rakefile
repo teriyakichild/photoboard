@@ -1,0 +1,3 @@
+CREATE TABLE boards (id integer primary key, name varchar, creator_id integer, timestamp timestamp);
+CREATE TABLE pictures (id integer primary key, filename varchar, user_id integer, board_id integer, timestamp timestamp);
+CREATE TABLE users (id integer primary key, username varchar unique, timestamp timestamp)
