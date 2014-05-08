@@ -103,6 +103,12 @@ class BoardHandler(MainHandler):
     board_id = self.boards().new(board_name,self.get_current_user()['id'])
     self.redirect('/boards/{0}'.format(board_id))
 
+class UserHandler(MainHandler):
+  @tornado.web.authenticated
+  def get(self):
+    users=self.users().all()
+    self.render('users.html',users=users)
+
 class AuthLoginHandler(MainHandler, tornado.auth.GoogleMixin):
     @tornado.gen.coroutine
     def get(self):
@@ -142,6 +148,7 @@ handlers = [
     (r"/", MainHandler),
     (r"/upload", UploadHandler),
     (r"/create", NewBoardHandler),
+    (r"/users", UserHandler),
     (r"/boards", BoardHandler),
     (r"/boards/([0-9]+)", BoardHandler),
     (r"/pictures/(.*)", tornado.web.StaticFileHandler, {'path': '/opt/photoboard/uploads/'}),
