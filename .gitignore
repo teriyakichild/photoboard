@@ -1,2 +1,8 @@
 *.pyc
 uploads/*
+photoboard.egg-info
+build
+dist
+rpm-build
+rpms
+photoboard/photos/*

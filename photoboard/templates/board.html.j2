@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+  {% block main %}
+    {% if id is None %}
+      <ol>
+      {% for board in boards %}
+        <li><a href="/boards/{{ board[0] }}">{{ board[1] }}</a></li>
+      {% end %}
+      </ol>
+    {% else %}
+      <form method="POST" action="/upload" enctype="multipart/form-data" />
+        <input type="file" name="photo" accept="image/*" capture="camera" />
+        <input type="hidden" name="board_id" value="{{ id }}" />
+        <input type="submit" value="Post" />
+      </form>
+
+      {% for photo in photos %} 
+        <div>
+          <img src="/photos/{{ photo['filename'] }}" /><br />
+          Added by: {{ photo['username']}}
+        </div>
+      {% end %}
+    {% end %}
+  {% end %}
