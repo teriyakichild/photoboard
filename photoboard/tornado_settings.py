@@ -1,4 +1,5 @@
 import tornado.options
+import os.path
 
 tornado.options.define('app_title', group='application')
 tornado.options.define('app_dir', group='application')
@@ -15,7 +16,7 @@ settings = dict(
      static_path='{0}/{1}'.format(options.app_dir,'public'),
      cookie_secret=options.cookie_secret,
      login_url='/login',
-     template_path='{0}/{1}'.format(options.app_dir,'templates'),
+     template_path='{0}/{1}'.format(os.path.dirname(os.path.realpath(__file__)),'templates'),
 #     default_handler_class,
 #     gzip,
 #     log_function,

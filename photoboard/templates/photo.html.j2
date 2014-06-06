@@ -1,4 +1,4 @@
-{% extends "base.html" %}  
+{% extends "base.html.j2" %}  
   {% block main %}
   <form method="POST" action="/upload" enctype="multipart/form-data">
     <input type="file" name="photo" accept="image/*" capture="camera">

@@ -1,5 +1,4 @@
 *.pyc
-uploads/*
 photoboard.egg-info
 build
 dist

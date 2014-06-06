@@ -17,6 +17,11 @@ if __name__ == "__main__":
         packages = [NAME],
         package_dir = {NAME: NAME},
         package_data = {NAME: ['templates/*','install_helper.py']},
+        data_files = [('/opt/photoboard/public/img',['photoboard/public/img/glyphicons-halflings-white.png','photoboard/public/img/glyphicons-halflings.png']),
+                      ('/opt/photoboard/public/js',['photoboard/public/js/bootstrap.js','photoboard/public/js/bootstrap.min.js']),
+                      ('/opt/photoboard/public/css',['photoboard/public/css/bootstrap.css','photoboard/public/css/bootstrap.min.css','photoboard/public/css/bootstrap-responsive.min.css'
+                        ,'photoboard/public/css/bootstrap-responsive.css']),
+                      ('/opt/photoboard/photos',[])],
         description = "A decentralized group photo sharing app.",
 
         install_requires = ['pillow',
@@ -27,4 +32,3 @@ if __name__ == "__main__":
             'console_scripts': [ 'photoboard = photoboard:main' ],
         }
     )
-
