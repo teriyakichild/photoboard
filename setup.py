@@ -21,7 +21,9 @@ if __name__ == "__main__":
                       ('/opt/photoboard/public/js',['photoboard/public/js/bootstrap.js','photoboard/public/js/bootstrap.min.js']),
                       ('/opt/photoboard/public/css',['photoboard/public/css/bootstrap.css','photoboard/public/css/bootstrap.min.css','photoboard/public/css/bootstrap-responsive.min.css'
                         ,'photoboard/public/css/bootstrap-responsive.css']),
-                      ('/opt/photoboard/photos',[])],
+                      ('/opt/photoboard/photos',[]),
+                      ('/opt/photoboard/db',[]),
+                      ('/etc',['photoboard/photoboard.conf'])],
         description = "A decentralized group photo sharing app.",
 
         install_requires = ['pillow',
