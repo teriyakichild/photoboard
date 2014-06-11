@@ -15,7 +15,8 @@ class photos:
         for photo in tmp:
           ret = { 'id': photo[0],
                   'filename': photo[1].split('/')[4],
-                  'username': photo[6]
+                  'username': photo[6],
+                  'timestamp': photo[4]
                 }
           photos.append(ret)
         return photos
@@ -49,16 +50,18 @@ class boards:
         boards = self.db.fetchall()
         return boards
     def all_for_user(self,user):
-        self.db.execute("SELECT * FROM boards;")
+        self.db.execute("SELECT * FROM boards join access on boards.id = access.board_id where access.user_id = ?;",(user,))
         boards = self.db.fetchall()
         return boards
     def new(self,name,creator_id):
         try:
           self.db.execute("INSERT INTO boards (name,creator_id) VALUES (?,?)", (name,creator_id,))
+          board_id = self.db.lastrowid
+          self.db.execute("INSERT INTO access (user_id,board_id) VALUES (?,?)", (creator_id,board_id,))
         except sqlite3.IntegrityError:
           return None
         self.conn.commit()
-        return self.db.lastrowid
+        return board_id
     def get(self,id):
         self.db.execute("SELECT * FROM boards where id = ?", (id,))
         board = self.db.fetchone()
@@ -72,6 +75,10 @@ class users:
         status = self.db.execute(table_query)
         self.conn.commit()
         return status
+    def boards(self,user_id):
+        self.db.execute("SELECT * FROM boards join access on boards.id = access.board_id where access.user_id = ?;",(user_id,))
+        boards = self.db.fetchall()
+        return boards
     def all(self):
         self.db.execute("SELECT * FROM users;")
         users = self.db.fetchall()

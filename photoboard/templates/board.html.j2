@@ -16,7 +16,7 @@
       {% for photo in photos %} 
         <div>
           <img src="/photos/{{ photo['filename'] }}" /><br />
-          Added by: {{ photo['username']}}
+          Added at {{ photo['timestamp'] }} by: {{ photo['username']}}
         </div>
       {% end %}
     {% end %}
