@@ -1,0 +1,11 @@
+{% extends "base.html.j2" %}
+  {% block main %}
+  <div class="alert alert-error">
+   {% if status_code == 403 %}
+   Access Forbidden
+   {% elif status_code == 404 %}
+   Page not found
+   {% elif status_code == 500 %}
+   Application Error
+   {% end %}
+  {% end %}
